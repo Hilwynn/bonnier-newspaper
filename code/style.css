@@ -9,20 +9,26 @@ body {
   font-size: 10px;
 }
 
-.article-box h2 {
-  padding: 0 10px;
-}
-
 p {
   color: #000;
   font-weight: initial;
   padding: 0 10px;
 }
 
+.article-box {
+  width: calc(25% - 5px);
+  background-color: white;
+  border: 1px solid black;
+  margin: 2.5px;
+}
+
+.article-box h2 {
+  padding: 0 10px;
+}
+
 .article-box img {
   width: 100%;
 }
-
 
 .container {
   width: 100%;
@@ -33,13 +39,6 @@ p {
   display: flex;
   flex-wrap: wrap;
   background-color: #eef8f9;
-}
-
-.article-box {
-  width: calc(25% - 5px);
-  background-color: white;
-  border: 1px solid black;
-  margin: 2.5px;
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
