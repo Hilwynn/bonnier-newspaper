@@ -47,3 +47,9 @@ p {
     width: calc(50% - 5px);
   }
 }
+
+@media (max-width: 600px) {
+  .article-box {
+    width: calc(100% - 5px);
+  }
+}
