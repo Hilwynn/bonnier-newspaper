@@ -1,7 +1,13 @@
-function loadArticles(page) {
+
+function loadArticles(page, query) {
 
   // Setup of API fetching
-  const urlArticles = `https://newsapi.org/v2/everything?language=en&q="recipe" AND "cooking" AND "food" NOT diet NOT restaurant NOT sports NOT chowhound&sortBy=publishedAt&apiKey=8faa8f82d07f4d2791452c95b103bd5a&page=${page}`
+  const language = "en"
+  // const query = "recipe+AND+cooking+AND+food+NOT+diet+NOT+restaurant+NOT+sports+NOT+chowhound+NOT+review"
+  const sortBy = "publishedAt"
+  const apiKey = "8faa8f82d07f4d2791452c95b103bd5a"
+
+  const urlArticles = `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sortBy}&apiKey=${apiKey}&page=${page}`
 
   const fallbackImagesArray = [
     "fallback-img-1.jpg",
@@ -90,7 +96,7 @@ function loadArticles(page) {
   }
 }
 
-loadArticles(1);
+loadArticles(1, "recipe+AND+cooking+AND+food+NOT+diet+NOT+restaurant+NOT+sports+NOT+chowhound+NOT+review");
 
 let g_currentPage = 1
 let button = document.getElementById("load-more")
@@ -98,3 +104,21 @@ button.onclick = () => {
     g_currentPage+=1
     loadArticles(g_currentPage);
   }
+
+
+  // Filter function for vegan
+  const filterFunction = () => {
+    document.querySelector(".grid").innerHTML = ""
+    loadArticles(1, "recipe+AND+cooking+AND+food+NOT+diet+NOT+restaurant+NOT+sports+NOT+chowhound+NOT+review+vegan")
+
+  }
+
+  let buttonVegan = document.getElementById("vegan-button")
+  buttonVegan.onclick = () => {
+      filterFunction();
+    }
+
+  let buttonAll = document.getElementById("every-articles")
+    buttonAll.onclick = () => {
+      loadArticles(1, "recipe+AND+cooking+AND+food+NOT+diet+NOT+restaurant+NOT+sports+NOT+chowhound+NOT+review");
+    }
