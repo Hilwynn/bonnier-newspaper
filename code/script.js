@@ -118,7 +118,8 @@ button.onclick = () => {
       filterFunction();
     }
 
-  let buttonAll = document.getElementById("every-articles")
+  // Filter button for "All"
+  let buttonAll = document.getElementById("all-articles-button")
     buttonAll.onclick = () => {
       loadArticles(1, "recipe+AND+cooking+AND+food+NOT+diet+NOT+restaurant+NOT+sports+NOT+chowhound+NOT+review");
     }

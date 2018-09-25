@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sprint 2 Team 4</title>
   <link href="./style.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 
-  <body>
+<body>
 
-    <div class="header">
-      <h1><span class="yellow"><i class="far fa-lemon"></i></span> feed<span class="yellow">.</span></h1>
-    </div>
+  <div class="header">
+    <h1><span class="yellow"><i class="far fa-lemon"></i></span> feed<span class="yellow">.</span></h1>
+  </div>
+
+  <div class="filter">
+    <button id="all-articles-button">All</button>
+    <button id="vegan-button">Vegan</button>
+  </div>
+
 
   <div class="container">
 
     <p class="article-number"></p>
 
-    <button id="every-articles">All</button>
-    <button id="vegan-button">Vegan</button>
-
-
     <div class="grid"></div>
 
     <button id="load-more">Load More</button>
 
-
-
   </div>
 
-  <script src="./script.js"></script>
-  </body>
+  <div class="footer">
+
+    <div class="footer-left">
+      <img class="footer-logo" src="./images/technigo-logo.svg" alt="Technigo-logo" />
+      <ul>
+        <li>Enabling digital creativity</li>
+        <li>www.technigo.org</li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div class="footer-middle">
+      <ul>
+        <li><strong>Developers</strong></li>
+        <li>Anna Erkers</li>
+        <li>Becki Wordsworth</li>
+        <li>Linda Olander</li>
+        <li>Louise Böhlin Pihlsgård</li>
+        <li>Sofia Berglund</li>
+      </ul>
+    </div>
+
+    <div class="footer-right">
+      <ul>
+        <li><strong>In cooperation with</strong></li>
+        <li>Bonnier News Lifestyle</li>
+      </ul>
+      <img class="footer-logo" src="./images/lifestyle-logo.png" alt="Lifestyle-logo" />
+    </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
 </html>

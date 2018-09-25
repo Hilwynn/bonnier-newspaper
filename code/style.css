@@ -42,6 +42,32 @@ h5 {
   line-height: 20px;
 }
 
+button {
+  background: #e9d962;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  padding: 10px 30px;
+  margin: 0 5px;
+}
+
+button:hover {
+  background: #ede3a6;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 14px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .article-number {
   font-size: 14px;
   font-weight: bold;
@@ -97,13 +123,27 @@ h5 {
   width: 100%;
 }
 
-
 .grid {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.footer {
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 70px 0;
+  margin-top: 50px;
+}
+
+.footer-logo {
+  margin: 10px 0;
+  width: 80px;
 }
 
 @media (max-width: 600px) {
