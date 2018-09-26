@@ -1,3 +1,6 @@
+//set up an empty array
+let loadedArticles = [];
+
 const fallbackImagesArray = [
   "fallback-img-1.jpg",
   "fallback-img-2.jpg",
@@ -22,7 +25,6 @@ const imgError = (image) => {
   image.src = `./images/${randomImageSrc}`;
   return true;
 }
-
 
 
 function loadArticles(page, subquery) {
@@ -52,14 +54,13 @@ function loadArticles(page, subquery) {
           shortDescription = article.description.substring (0, descriptionLength) + "..."
       }
 
-      // const titleLength = 60
-      // let shortTitle = article.title
-      // if (article.title.length > titleLength) {
-      //   shortTitle = article.title.substring(0, titleLength) + "..."
-      // }
-
       if(article.urlToImage && index < 40) {
   			//Here we create and add html elements to our html file
+
+        // store the article for the popup and keeping track of the number of the div you are creating to put in articleIndex later.
+        loadedArticles.push(article);
+        let storedArticleIndex = loadedArticles.length - 1;
+
   			document.querySelector(".grid").innerHTML +=
           `<div class="article-box">
             <div class="article-img-box">
@@ -71,27 +72,11 @@ function loadArticles(page, subquery) {
               </a>
               <h5>${article.source.name}</h5>
               <p>${shortDescription}</p>
+              <button onclick="openNav(${storedArticleIndex})">open</button>
+              <button onclick="readNav()">Read More</button>
             </div>
           </div>`
          }
-
-         // `<div class="article-box">
-         //   <div class="article-img-box">
-         //     <img src="${article.urlToImage}" onerror="imgError(this);"/>
-         //   </div>
-         //   <div class="article-text-box">
-         //     <h6>${article.publishedAt}</h6>
-         //     <a href ="${article.url}" target="_blank">
-         //       <h3>${article.title}</h3>
-         //     </a>
-         //     <h5>${article.source.name}</h5>
-         //     <p>${previewDescription}</p>
-         //     <div class="readmore-button"> Read more</div>
-         //     <div class="descriptionLength-readmore">
-         //       <p>${article.description}</p>
-         //     </div>
-         //   </div>
-         // </div>`
 
       })
   }
@@ -117,6 +102,8 @@ function changeFilter(filter) {
   document.querySelector(".grid").innerHTML = ""
   g_currentPage = 1;
   g_currentFilter = filter;
+  //wipes the data in the array so we aren't storing forever
+  loadedArticles = [];
   loadArticles(g_currentPage, g_currentFilter);
 }
 
@@ -154,4 +141,36 @@ buttonMarkle.onclick = () => {
 let buttonAll = document.getElementById("all-articles-button")
 buttonAll.onclick = () => {
   changeFilter("");
+}
+
+
+// Overlay function made at Lifestyle
+//loads the information you stored in the array and puts it in the popup
+function openNav(articleIndex) {
+  let article = loadedArticles[articleIndex];
+
+  document.getElementById("article-popup").style.width = "100%";
+  document.getElementById("article-popup").innerHTML = `
+    <div class="article-box-pop">
+      <div class="article-img-box">
+        <img src="${article.urlToImage}" onerror="imgError(this);"/>
+      </div>
+      <div class="article-text-box">
+        <a href ="${article.url}" target="_blank">
+          <h3>${article.title}</h3>
+        </a>
+        <h5>${article.source.name}</h5>
+        <p>${article.description}</p>
+        <button onclick="closeNav()">close</button>
+        <button onclick="readNav()">Read More</button>
+  `
+}
+
+function closeNav() {
+  document.getElementById("article-popup").style.width = "0px";
+}
+
+//need to make this work! Just copied and pasted to remind me.
+function readNav() {
+  document.getElementById("article-popup").style.width = "calc(25% - 10px);";
 }
