@@ -135,6 +135,21 @@ buttonChicken.onclick = () => {
   changeFilter("chicken");
 }
 
+let buttonAsian = document.getElementById("asian-button")
+buttonAsian.onclick = () => {
+  changeFilter("asian");
+}
+
+let buttonFish = document.getElementById("fish-button")
+buttonFish.onclick = () => {
+  changeFilter("fish");
+}
+
+let buttonMarkle = document.getElementById("markle-button")
+buttonMarkle.onclick = () => {
+  changeFilter("markle");
+}
+
 // Filter button for "All"
 let buttonAll = document.getElementById("all-articles-button")
 buttonAll.onclick = () => {
