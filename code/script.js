@@ -26,7 +26,6 @@ const imgError = (image) => {
   return true;
 }
 
-
 function loadArticles(page, subquery) {
 
   // Setup of API fetching
@@ -36,54 +35,48 @@ function loadArticles(page, subquery) {
   if (subquery !== undefined && subquery.length > 0) {
     query += `+AND+${subquery}`
   }
+
   const sortBy = "publishedAt"
   const apiKey = "8faa8f82d07f4d2791452c95b103bd5a"
 
   const urlArticles = `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sortBy}&apiKey=${apiKey}&page=${page}`
 
   const recievedArticles = (newsdata) => {
+    console.log(newsdata);
 
     const totalReceivedArticles = newsdata.totalResults
     document.querySelector(".article-number").innerHTML = `All articles (${totalReceivedArticles})`
 
-  	// For each article object from the API, we create a new div in HTML.
+    // For each article object from the API, we create a new div in HTML.
     newsdata.articles.forEach((article, index) => {
-      const descriptionLength = 120
-      let shortDescription = article.description
-      if (article.description.length > descriptionLength) {
-          shortDescription = article.description.substring (0, descriptionLength) + "..."
-      }
-
-      if(article.urlToImage && index < 40) {
-  			//Here we create and add html elements to our html file
+      if (article.urlToImage && index < 40) {
+        //Here we create and add html elements to our html file
 
         // store the article for the popup and keeping track of the number of the div you are creating to put in articleIndex later.
         loadedArticles.push(article);
         let storedArticleIndex = loadedArticles.length - 1;
 
-  			document.querySelector(".grid").innerHTML +=
+        document.querySelector(".grid").innerHTML +=
           `<div class="article-box">
-            <div class="article-img-box">
-              <img src="${article.urlToImage}" onerror="imgError(this);"/>
-            </div>
-            <div class="article-text-box">
-              <a href ="${article.url}" target="_blank">
-                <h3>${article.title}</h3>
-              </a>
-              <h5>${article.source.name}</h5>
-              <p>${shortDescription}</p>
-              <button onclick="openNav(${storedArticleIndex})">open</button>
-              <button onclick="readNav()">Read More</button>
-            </div>
-          </div>`
-         }
-
-      })
+              <div class="article-img-box">
+                <img src="${article.urlToImage}" onerror="imgError(this);"/>
+              </div>
+              <div class="article-text-box">
+                <a href ="${article.url}" target="_blank">
+                  <h3>${article.title}</h3>
+                </a>
+                <h5>${article.source.name}</h5>
+                <div class="article-info">
+                <img class="open" src="./images/open1.png" onclick="openNav(${storedArticleIndex})"/>
+                </div>
+              </div>
+            </div>`
+      }
+    })
   }
 
   fetch(urlArticles).then(response => response.json()).then(recievedArticles)
 }
-
 
 loadArticles(1, "");
 
@@ -160,9 +153,8 @@ function openNav(articleIndex) {
           <h3>${article.title}</h3>
         </a>
         <h5>${article.source.name}</h5>
-        <p>${article.description}</p>
-        <button onclick="closeNav()">close</button>
-        <button onclick="readNav()">Read More</button>
+        <h5>${article.description}</h5>
+        <img class = "close" src="./images/close1.png" onclick="closeNav()"/>
   `
 }
 
@@ -171,6 +163,13 @@ function closeNav() {
 }
 
 //need to make this work! Just copied and pasted to remind me.
-function readNav() {
+function readNav(articleIndex) {
   document.getElementById("article-popup").style.width = "calc(25% - 10px);";
+
+  let article = loadArticles[articleIndex]
+  document.getElementById("article-popup").innerHTML = `<div class="article-box-pop">
+    <div class="article-text-box">
+      <a href ="${article.url}" target="_blank">
+      </div>`
+
 }
