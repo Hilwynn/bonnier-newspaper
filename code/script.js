@@ -145,16 +145,18 @@ function openNav(articleIndex) {
   document.getElementById("article-popup").style.width = "100%";
   document.getElementById("article-popup").innerHTML = `
     <div class="article-box-pop">
-      <div class="article-img-box">
+      <div class="article-img-box-pop">
         <img src="${article.urlToImage}" onerror="imgError(this);"/>
       </div>
-      <div class="article-text-box">
+      <div class="article-text-box-pop">
         <a href ="${article.url}" target="_blank">
           <h3>${article.title}</h3>
         </a>
         <h5>${article.source.name}</h5>
         <h5>${article.description}</h5>
-        <img class = "close" src="./images/close1.png" onclick="closeNav()"/>
+        <img class = "close" src="./images/close2.png" onclick="closeNav()"/>
+      </div>
+    </div>
   `
 }
 
@@ -163,13 +165,13 @@ function closeNav() {
 }
 
 //need to make this work! Just copied and pasted to remind me.
-function readNav(articleIndex) {
-  document.getElementById("article-popup").style.width = "calc(25% - 10px);";
+//function readNav(articleIndex) {
+  //document.getElementById("article-popup").style.width = "calc(25% - 10px);";
 
-  let article = loadArticles[articleIndex]
-  document.getElementById("article-popup").innerHTML = `<div class="article-box-pop">
-    <div class="article-text-box">
-      <a href ="${article.url}" target="_blank">
-      </div>`
-
-}
+//   let article = loadArticles[articleIndex]
+//   document.getElementById("article-popup").innerHTML = `<div class="article-box-pop">
+//     <div class="article-text-box">
+//       <a href ="${article.url}" target="_blank">
+//       </div>`
+//
+// }
